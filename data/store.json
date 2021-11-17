@@ -1,0 +1,13 @@
+[
+    {
+        "storeName": "Sans Store",
+        "description": "Toko ter sans di Jakarta. Apapun yang kau butuh, kita pasti sedia!",
+        "userId": 1
+    },
+    {
+        "storeName": "Bro Doe Shop",
+        "description": "Serba sedia untuk bro - bro si Doe",
+        "userId": 2
+    }
+
+]
