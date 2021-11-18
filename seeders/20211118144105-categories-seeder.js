@@ -3,12 +3,13 @@ const fs = require('fs')
 
 module.exports = {
   up:  (queryInterface, Sequelize) => {
-    let data = JSON.parse(fs.readFileSync("./data/store.json", "utf-8"))
+    let data = JSON.parse(fs.readFileSync("./data/category.json", "utf-8"))
     data.forEach((e) => {
       e.createdAt = new Date()
       e.updatedAt = new Date()
     })
-    return queryInterface.bulkInsert('Stores', data, {})
+    return queryInterface.bulkInsert('Categories', data, {})
+
     /**
      * Add seed commands here.
      *
@@ -21,7 +22,8 @@ module.exports = {
   },
 
   down:  (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Stores', null, {})
+    return queryInterface.bulkDelete('Categories', null, {})
+
     /**
      * Add commands to revert seed here.
      *
@@ -29,4 +31,4 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
   }
-};
+  };

@@ -12,10 +12,17 @@ app.use(express.urlencoded({extended:true}))
 // })
 app.get("/", Controller.landingPage)
 app.get("/login", Controller.login)
+app.post("/login", Controller.postLogin)
+
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now())
+  next()
+})
+
 app.get("/register", Controller.showRegister)
-app.post("/register", Controller.showRegister)
+app.post("/register", Controller.postRegister)
 app.get("/store", Controller.readStore)
-app.get("/store/products/:id", Controller.readProductDetail)
+// app.get("/store/products/:id", Controller.readProductDetail)
 
 
 app.listen(port, () => {
