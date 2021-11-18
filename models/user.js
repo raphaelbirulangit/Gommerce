@@ -18,22 +18,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    userName: DataTypes.STRING
-  }, {
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {notEmpty: {msg: 'Please insert your working email'}}
+      },
+    password: {
+      type: DataTypes.STRING, 
+      allowNull: false,
+      validate: {notEmpty: {msg: 'Please insert password'}}
+      },
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {notEmpty: {msg : 'Please input username'}}
+    }, }, {
+    
+    sequelize,
+    modelName: 'User',
     hooks: {
-      beforeCreate(instance, options) {
+      beforeCreate: (instance, options) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(instance.password, salt);
         
         instance.password = hash
-        // bcrypt.compareSync("B4c0/\/", hash); // true
-        // bcrypt.compareSync("not_bacon", hash);  
-      }
+        
+      },
     },
-    sequelize,
-    modelName: 'User',
   });
   return User;
 };

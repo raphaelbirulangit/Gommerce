@@ -3,6 +3,7 @@ const {Op} = require('sequelize')
 const user = require('../models/user')
 const bcryptjs = require('bcryptjs')
 
+
 class Controller {
     static landingPage(req, res){
         res.render("landingPage")
@@ -20,7 +21,8 @@ class Controller {
             if(user){
                 const validate = bcryptjs.compareSync(password, user.password)
                 if(validate) {
-                    return res.render("store")
+                    req.session.userName = user.userName
+                    res.redirect("/store")
                 } else {
                     const error = 'invalid username/password'
                     return res.redirect(`/login?error=${error}`)
@@ -49,8 +51,8 @@ class Controller {
 
     static readStore(req, res){
         const {StoreId} = req.params
-        Store.findOne({where: {id:StoreId}, include: 'Products'})
-        .then(data => res.render('/store', {data}))
+        Store.getProductsbyStoreId(StoreId)
+        .then((data) => res.render('store', {data}))
         .catch(err => res.send(err))
     }
 
