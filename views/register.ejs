@@ -1,6 +1,11 @@
 <%- include('header') %>
     
     <form action="/register" method="POST">
+        <% if(error) error.forEach(err => { %>
+            <div class="alert alert-danger" role="alert">  
+                <%= err %>    
+            </div>
+            <% }) %>
         <label for="fname">Email:</label><br>
         <input type="text" id="email" name="email" placeholder="your new email here"><br>
         <label for="lname">Password:</label><br>

@@ -24,11 +24,11 @@ class Controller {
                     req.session.userName = user.userName
                     res.redirect("/store")
                 } else {
-                    const error = 'invalid username/password'
+                    let error = 'invalid username/password'
                     return res.redirect(`/login?error=${error}`)
                 }
             } else {
-                const error = 'please input registered account'
+                let error = 'please input registered account'
                 return res.redirect(`/login?error=${error}`)
 
 
@@ -38,11 +38,15 @@ class Controller {
     }
 
     static showRegister(req, res){
-        res.render("register")
+        let {error} = req.query
+
+        res.render("register", {error})
     }
 
     static postRegister(req, res){
         let {userName, email, password} = req.body
+        let {error} = req.query
+
         User.create({userName, email, password})
         .then((newData) => res.redirect("/login"))
         .catch(err => res.send(err))
