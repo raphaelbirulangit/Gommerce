@@ -1,4 +1,6 @@
 'use strict';
+var bcrypt = require('bcryptjs');
+
 const {
   Model
 } = require('sequelize');
@@ -9,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    
     static associate(models) {
       // define association here
     }
@@ -18,6 +22,15 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     userName: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate(instance, options) {
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(instance.password, salt);
+        
+        // bcrypt.compareSync("B4c0/\/", hash); // true
+        // bcrypt.compareSync("not_bacon", hash);  
+      }
+    },
     sequelize,
     modelName: 'User',
   });
