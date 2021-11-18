@@ -1,0 +1,14 @@
+[
+    {
+        "categoryName" : "Laptop",
+        "description": "lihat laptop disini"
+    },
+    {
+        "categoryName" : "Handphone",
+        "description": "lihat Hanphone disini"
+    },
+    {
+        "categoryName" : "Pakaian",
+        "description": "lihat Pakaian disini"
+    }
+]

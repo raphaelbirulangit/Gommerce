@@ -1,0 +1,26 @@
+[
+    {
+        "productName" : "laptop asus",
+        "productDescription" : "RTX 3080 RAM 32GB",
+        "productQuantity" : 3,
+        "productPrice": 40000000,
+        "CategoryId": 1,
+        "StoreId": 1
+    },
+    {
+        "productName" : "Iphone 13",
+        "productDescription" : "RAM 8 Storage 256",
+        "productQuantity" : 5,
+        "productPrice": 15000000,
+        "CategoryId": 2,
+        "StoreId": 1
+    },
+    {
+        "productName" : "jaket",
+        "productDescription" : "bahan kulit",
+        "productQuantity" : 10,
+        "productPrice": 5000000,
+        "CategoryId": 2,
+        "StoreId": 2
+    }
+]
