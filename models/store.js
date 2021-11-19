@@ -10,14 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 
-    static getProductsbyStoreId(StoreId){
-      return new Promise((res, rej) => {
-        Store.findOne({where: {id:StoreId}, include: "Products"})
-        .then(data => res(data))
-        .catch(err => res(err))
-      })
-    }
-
     static associate(models) {
       // define association here
     }

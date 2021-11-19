@@ -23,7 +23,7 @@ class Controller {
                 const validate = bcryptjs.compareSync(password, user.password)
                 if(validate) {
                     req.session.userName = user.userName
-                    res.redirect("/store")
+                    res.redirect("/store/:id")
                 } else {
                     let error = 'invalid username/password'
                     return res.redirect(`/login?error=${error}`)
@@ -85,10 +85,7 @@ class Controller {
     }
 
     static readStore(req, res){
-        const {StoreId} = req.params
-        Store.getProductsbyStoreId(StoreId)
-        .then((data) => res.render('store', {data}))
-        .catch(err => res.send(err))
+        res.render('store')
     }
 
 }

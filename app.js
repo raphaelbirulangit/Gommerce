@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
   }
 })
 
-app.get("/store", Controller.readStore)
+app.get("/store/:id", Controller.readStore)
 // app.get("/store/products/:id", Controller.readProductDetail)
 
 
