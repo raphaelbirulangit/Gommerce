@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Store</h1>
+    <button onclick="window.location.href='/logout';"> log out </button><br>
+    <button onclick="window.location.href='/store/<%=id%>/add';"> Add product </button><br>
+    
+    <label for="">Sort by: </label>
+        <a href="/store/<%=id%>?sort=name"><button> name</button></a>
+        <a href="/store/<%=id%>?sort=price"><button> price</button></a>
+        <br><br>
+        
+    <%data.forEach(el=>{ %>
+        <div class="card" style="float: left">
+            <h4><b><%=el.productName%></b></h4>
+            <p>
+                price :<%=el.productPrice%><br>
+                stock :<%=el.productQuantity%><br>
+            </p>
+            <button style="border-color: green; color: green" onclick="window.location.href='/store/<%=id%>/sell/<%=el.id%>';"> sell </button>
+            <button style="background-color: red" onclick="window.location.href='/store/<%=id%>/delete/<%=el.id%>';"> Delete </button><br><br>
+        </div>
+    <% })%>
+</body>
+</html>
