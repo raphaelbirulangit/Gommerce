@@ -23,6 +23,7 @@ app.get("/register", Controller.showRegister)
 app.post("/register", Controller.postRegister)
 app.get("/login", Controller.login)
 app.post("/login", Controller.postLogin)
+app.get("/logout", Controller.logOut)
 
 app.use(function (req, res, next) {
   console.log(req.session)

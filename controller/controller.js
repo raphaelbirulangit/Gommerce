@@ -2,6 +2,7 @@ const {Store, User, Products, Categories} = require('../models')
 const {Op} = require('sequelize')
 const user = require('../models/user')
 const bcryptjs = require('bcryptjs')
+const nodeMailer = require('nodemailer')
 
 
 class Controller {
@@ -51,6 +52,36 @@ class Controller {
         .then((newData) => res.redirect("/login"))
         .catch(err => res.send(err))
         console.log(req.body)
+
+        let mailTransport = nodeMailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'raphaelbirulangit@gmail.com',
+                pass: 'wikiwiki1'
+            }
+        })
+
+        let mailDetails = {
+            from: 'raphaelbirulangit@gmail.com',
+            to: `${email}`,
+            subject: 'Gommerce registration',
+            text: 'Email registered successfully!'
+        }
+
+        mailTransport.sendMail(mailDetails, function(err, data) {
+            if(err) console.log(err)
+            else console.log('email sent successfully!')
+        })
+
+    }
+
+    static logOut(){
+        req.session.destroy((err) => {
+            if(err) res.send(err)
+            else{
+                res.redirect('/login')
+            }
+        })
     }
 
     static readStore(req, res){
