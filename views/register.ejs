@@ -1,0 +1,19 @@
+<%- include('header') %>
+    
+    <form action="/register" method="POST">
+        <% if(error) error.forEach(err => { %>
+            <div class="alert alert-danger" role="alert">  
+                <%= err %>    
+            </div>
+            <% }) %>
+        <label for="fname">Email:</label><br>
+        <input type="text" id="email" name="email" placeholder="your new email here"><br>
+        <label for="lname">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="your new password here""><br><br>
+        <label for="lname">Username:</label><br>
+        <input type="text" id="userName" name="userName" placeholder="your new user name here""><br><br>
+        <input type="submit" value="Submit">
+    </form> 
+
+
+<%- include('footer') %>
